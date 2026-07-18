@@ -233,17 +233,6 @@ const CRAFT_ITEMS = [
     src: 'images/dashboard.jpg',
     ratio: '1/1',
     description: 'Inspired by natural materials and handcrafted artistry. Each piece is thoughtfully created to compliment contemporary and traditional spaces alike.'
-  },
-  {
-    id: 110,
-    title: 'Craft Piece 5',
-    year: 2023,
-    medium: 'Paper & Object',
-    dimensions: 'Variable',
-    category: 'Craft',
-    src: 'images/craft5.jpg',
-    ratio: '1/1',
-    description: 'Works on paper made by hand in limited quantities.'
   }
 ];
 
