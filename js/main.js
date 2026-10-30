@@ -451,7 +451,7 @@ function initEventsPage() {
           <span class="event-type" data-type="${event.type.toLowerCase()}">${event.type}</span>
         </span>
         <span class="event-title-row">
-          <h3 class="event-title">${event.title}</h3>
+          <span class="event-title">${event.title}</span>
           <span class="event-icon" aria-hidden="true">+</span>
         </span>
       </button>
