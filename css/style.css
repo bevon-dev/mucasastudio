@@ -804,8 +804,54 @@ a:focus-visible, button:focus-visible {
   font-weight: 500;
   font-size: 1.4rem;
   color: var(--ink);
-  margin-bottom: 16px;
+  margin: 0;              
+  display: block;
 }
+
+.event-toggle {
+  width: 100%;
+  display: block;
+  background: none;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.event-toggle:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 6px;
+}
+
+.event-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.event-icon {
+  font-family: var(--mono);
+  font-size: 1.4rem;
+  line-height: 1;
+  flex-shrink: 0;
+  color: var(--ink-soft);
+  transition: color 0.25s ease;
+}
+
+.event-card:hover .event-icon,
+.event-card.open .event-icon { color: var(--ink); }
+
+.event-card.open { border-color: var(--ink); }
+
+.event-more {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+.event-more[hidden] { display: none; }
 
 .event-details {
   display: flex;
