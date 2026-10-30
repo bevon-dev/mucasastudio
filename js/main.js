@@ -433,11 +433,11 @@ function initSeriesGallery() {
   initReveal();
 }
 
-/* ---------- Events page: render events list ---------- */
+/* ---------- Events page: render events list (tap to expand) ---------- */
 function initEventsPage() {
   const container = document.getElementById('eventsList');
   if (!container) return;
-  
+
   container.innerHTML = '';
   EVENTS.forEach(event => {
     const eventEl = document.createElement('div');
@@ -445,18 +445,37 @@ function initEventsPage() {
     const eventDate = new Date(event.date);
     const formatted = eventDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
     eventEl.innerHTML = `
-      <div class="event-header">
-        <div class="event-date">${formatted}</div>
-        <div class="event-type" data-type="${event.type.toLowerCase()}">${event.type}</div>
+      <button type="button" class="event-toggle" aria-expanded="false" aria-controls="event-more-${event.id}">
+        <span class="event-header">
+          <span class="event-date">${formatted}</span>
+          <span class="event-type" data-type="${event.type.toLowerCase()}">${event.type}</span>
+        </span>
+        <span class="event-title-row">
+          <h3 class="event-title">${event.title}</h3>
+          <span class="event-icon" aria-hidden="true">+</span>
+        </span>
+      </button>
+      <div class="event-more" id="event-more-${event.id}" hidden>
+        <div class="event-details">
+          <div class="event-time"><b>Time:</b> ${event.time}</div>
+          <div class="event-location"><b>Location:</b> ${event.location}</div>
+        </div>
+        <p class="event-description">${event.description}</p>
+        <a href="contact.html" class="event-cta">Enquire about this event →</a>
       </div>
-      <h3 class="event-title">${event.title}</h3>
-      <div class="event-details">
-        <div class="event-time"><b>Time:</b> ${event.time}</div>
-        <div class="event-location"><b>Location:</b> ${event.location}</div>
-      </div>
-      <p class="event-description">${event.description}</p>
-      <a href="contact.html" class="event-cta">Get more info →</a>
     `;
+
+    const btn = eventEl.querySelector('.event-toggle');
+    const more = eventEl.querySelector('.event-more');
+    const icon = eventEl.querySelector('.event-icon');
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      more.hidden = open;
+      icon.textContent = open ? '+' : '–';
+      eventEl.classList.toggle('open', !open);
+    });
+
     container.appendChild(eventEl);
   });
   initReveal();
